@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload Profile Picture</h1>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="profileFile">Upload profile picture:</label>
+            <input type="file" id="profileFile" name="profile-file" required />
+        </div>
+        <div>
+            <button type="button" id="uploadBtn">Upload</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("uploadBtn").addEventListener("click", async () => {
+            const form = document.getElementById("uploadForm");
+            const formData = new FormData(form);
+
+            // Debugging: Log form data to ensure it's correct
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key}:`, value);
+            }
+
+            try {
+                // Send file to backend API
+                const response = await fetch("http://localhost:6000/uploadphoto", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert("File uploaded successfully!");
+                    console.log("Response:", result);
+                } else {
+                    console.error("Upload failed:", await response.text());
+                    alert("Failed to upload file.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

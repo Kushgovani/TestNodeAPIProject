@@ -1,0 +1,33 @@
+1.File Create:
+app.js 
+
+2.Install
+npm init
+npm i express
+npm i
+npm i nodemon
+npm i mongoose
+npm i dotenv
+
+3.File Create:
+main.js
+config.env
+
+4.All Set Server and Database
+
+5.File Create:
+Routers
+Models
+Controllers
+
+6.Jwt Token
+npm install jsonwebtoken
+
+7.CSV upload Database
+npm i multer
+npm i csvtojson
+
+
+
+
+
